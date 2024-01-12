@@ -1,0 +1,21 @@
+# Modèle
+# Equation : logit(Fum_peak_D)=beta1*Gender+beta2*Age+beta3*LAD+beta4*SAD+beta5*Voxel+beta6*upper_abdomen+beta7*Th_strategies+beta8*Primary_t+beta9*Lymph_node_metastasis
+model{
+
+  # Vraisemblance
+  for (i in 1:N){ 
+    y_obs[i]~dbern(mu[i])
+    logit(mu[i]) <- logbeta1*(x1[i])+logbeta2*(x2[i])+logbeta3*(x3[i])+logbeta4*(x4[i])+logbeta5*(x5[i])+logbeta6*(x6[i])+logbeta7*(x7[i])+logbeta8*(x8[i])+logbeta9*(x9[i])
+  }
+
+  # A priori
+  logbeta1~dunif(-10,10)
+  logbeta2~dunif(-10,10)
+  logbeta3~dunif(-10,10)
+  logbeta4~dunif(-10,10)
+  logbeta5~dunif(-10,10)
+  logbeta6~dunif(-10,10)
+  logbeta7~dunif(-10,10)
+  logbeta8~dunif(-10,10)
+  logbeta9~dunif(-10,10)
+}
